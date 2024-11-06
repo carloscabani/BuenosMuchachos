@@ -1,0 +1,33 @@
+/* Contenedor principal de contenido */
+.content {
+    max-width: 800px; /* Limita el ancho del contenido */
+    margin: 0 auto; /* Centra el contenido */
+    padding: 20px;
+    line-height: 1.6; /* Espacio entre líneas para mejorar la legibilidad */
+}
+
+/* Títulos */
+.content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px; /* Espacio debajo del título principal */
+    color: #001A49; /* Color personalizado para el título */
+}
+
+.content p strong {
+    font-size: 1.2rem; /* Tamaño de fuente para los subtítulos en negrita */
+}
+
+/* Espacio entre el título de cada técnica y el contenido */
+.content p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Imágenes en el contenido */
+.imagen-blog1 {
+    width: 80%; /* Hace que las imágenes sean un poco más pequeñas */
+    display: block;
+    margin: 20px auto; /* Centra las imágenes y agrega espacio superior e inferior */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para estilo */
+}

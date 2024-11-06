@@ -395,11 +395,176 @@ body{
     display: block;
 }
 
-.questions__copy{
-    width: 60%;
-    margin: 0 auto;
-    margin-bottom: 30px;
+/* Blogs */
+
+.blogs {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
+
+.container-blogs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3rem;
+}
+
+.card-blog {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.card-blog .container-img {
+	border-radius: 2rem;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.button-group-blog {
+	position: absolute;
+	bottom: 1.5rem;
+	right: -2.5rem;
+
+	display: flex;
+	gap: 0.7rem;
+	z-index: -1;
+	transition: all 0.3s ease;
+}
+
+.card-blog:hover .button-group-blog {
+	z-index: 0;
+	right: 1.5rem;
+}
+
+.button-group-blog span {
+	background-color: #fff;
+	padding: 1rem;
+	border-radius: 50%;
+	transition: all 0.4s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-group-blog span i {
+	font-size: 1.3rem;
+}
+
+.button-group-blog span:hover {
+	background-color: var(--primary-color);
+}
+
+.button-group-blog span:hover i {
+	color: #fff;
+}
+
+.content-blog h3 {
+	font-size: 1.8rem;
+	margin-bottom: 1.7rem;
+	color: var(--dark-color);
+	font-weight: 500;
+}
+
+.content-blog h3:hover {
+	color: var(--primary-color);
+	cursor: pointer;
+}
+
+.content-blog p {
+	margin-top: 1rem;
+	font-size: 1.4rem;
+	color: #777;
+}
+
+.content-blog span {
+	color: var(--primary-color);
+	font-size: 1.3rem;
+}
+
+.btn-read-more {
+	padding: 1rem 3rem;
+	background-color: #9F3919;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.4rem;
+	border-radius: 2rem;
+	margin: 3rem 0 5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.btn-read-more a {
+    color: inherit; /* Toma el color de su contenedor */
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+
+.btn-read-more:hover {
+	background-color: var(--color-title);
+}
+
+.blog-img1 {
+    width: 325px; 
+    height: auto; 
+}
+
+.blog-img2 {
+    width: 325px; 
+    height: auto; 
+}
+
+.blog-img3 {
+    width: 325px; 
+    height: auto; 
+}
+
+.container.blogs {
+    padding: 50px 0; /* Reduce el padding superior e inferior a 50px */
+    margin: 0 auto; /* Ajusta según sea necesario */
+}
+
+
+/* Estructura de la sección de blogs en pantalla grande */
+.container-blogs {
+    display: flex;
+    gap: 20px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye espacio entre los elementos */
+}
+
+/* Estilos para las tarjetas individuales del blog */
+.card-blog {
+    flex: 1;
+    min-width: 250px; /* Evita que se encojan demasiado */
+    max-width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (max-width: 768px) {
+    .container-blogs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-blog {
+        width: 80%; /* Ocupa el 80% del ancho en pantallas medianas */
+        margin-bottom: 20px;
+    }
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    .card-blog {
+        width: 100%; /* Ocupa todo el ancho en móviles */
+        margin-bottom: 20px;
+    }
+}
+
 
 /* Footer */
 
@@ -621,7 +786,6 @@ body{
 
     .price__element--best{
         width: 90%;
-        /* padding: 40px; */
     }
 
     .price__price{
@@ -675,11 +839,6 @@ body{
     .footer__submit{
         margin-right: auto;
         margin-left: 0;
-        
 
-        /* 
-        margin:0;
-        width: 100%;
-        */
     }
 }
