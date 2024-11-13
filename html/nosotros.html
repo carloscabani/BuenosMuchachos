@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Buenos Muchachos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/estilosContenidos.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <meta name="theme-color" content="#2091F9">
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <!-- Llamada commonHeader.html -->
+    <script>
+        fetch('commonHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+                const link = document.createElement('link');
+                link.rel = 'shortcut icon';
+                link.href = '../images/logo.png';
+                link.type = 'image/x-icon';
+                document.head.appendChild(link);
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+    </script>
+
+
+    <main class="container">
+        <section class="content">
+            <h1>Nosotros</h1>
+            <p>
+                Somos un equipo diverso de estudiantes de ESPOL comprometidos con la innovación y el 
+                desarrollo de soluciones efectivas para mejorar la experiencia educativa universitaria.
+                A través de la combinación de tecnología, organización estratégica y apoyo emocional,
+                buscamos potenciar el rendimiento académico y el bienestar de los estudiantes de primer semestre,
+                ayudándolos a enfrentar los desafíos de la vida universitaria de manera integral.
+            </p>
+            <img src="../images/team.png" alt="Imagen del equipo" class="imagen_grupo">
+
+            <h2 class="contact__title">CONTÁCTANOS</h2>
+            <p class="contact__info">
+                Si deseas más información sobre nuestro proyecto o tienes alguna consulta, contáctanos a través de:
+            <ul>
+                <li><strong>Correo electrónico:</strong> losbuenosmuchachos@espol.edu.ec</li>
+                <li><strong>Teléfono:</strong> +593991234567</li>
+                <li><strong>Redes sociales:</strong> Síguenos en @losbuenosmuchachos</li>
+            </ul>
+            ¡Estaremos encantados de atenderte y compartir más sobre nuestra propuesta innovadora!
+            </p>
+        </section>
+    </main>
+
+    <!-- Llamada del footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+    </script>
+
+    <script src="../js/navegacion.js"></script>
+
+</body>
+
+</html>

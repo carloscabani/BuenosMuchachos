@@ -7,27 +7,39 @@
 }
 
 /* Títulos */
-.content h1 {
+.content h1{
     font-size: 2.5rem;
     margin-bottom: 20px; /* Espacio debajo del título principal */
     color: #001A49; /* Color personalizado para el título */
+    text-align: center; /* Centra el título */
 }
 
+/* Estilo para los subtítulos en negrita */
 .content p strong {
-    font-size: 1.2rem; /* Tamaño de fuente para los subtítulos en negrita */
+    font-size: 1.2rem;
 }
 
 /* Espacio entre el título de cada técnica y el contenido */
 .content p {
     margin-top: 10px;
     margin-bottom: 20px;
+    text-align: justify; /* Justifica el contenido del texto */
 }
 
 /* Imágenes en el contenido */
-.imagen-blog1 {
+.imagen-blog {
     width: 80%; /* Hace que las imágenes sean un poco más pequeñas */
     display: block;
     margin: 20px auto; /* Centra las imágenes y agrega espacio superior e inferior */
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para estilo */
+}
+
+.imagen_grupo{
+    width: 760px;
+    height: 428px;
+}
+
+.contact__title{
+    text-align: center;
 }

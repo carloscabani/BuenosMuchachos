@@ -5,6 +5,44 @@
     --color-title: #001A49;
 }
 
+/* CSS para la animación de entrada */
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 1.2s forwards;
+}
+
+/* CSS para la animación de salida */
+.fade-out {
+    opacity: 1;
+    animation: fadeOutAnimation 1.2s forwards;
+}
+
+/* Animación de desvanecimiento de entrada */
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de desvanecimiento de salida */
+@keyframes fadeOutAnimation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
 body{
     font-family: "Poppins", sans-serif;
 }
@@ -44,8 +82,7 @@ body{
 
 /* configuraciones del nav */
 .nav{
-    --padding-container:0;
-    height: 100%;
+    padding: 0;
     display: flex;
     align-items: center;
 }
@@ -65,6 +102,8 @@ body{
 
 .nav__items{
     list-style: none;
+    margin: 0;
+    padding: 0;
 
 }
 
@@ -90,6 +129,13 @@ body{
 }
 
 /* header */
+
+.hero .container {
+    padding: 0; /* Elimina el padding del contenedor solo en el header */
+    max-width: 1200px; /* Mantén el ancho máximo como en otros contenedores */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
 
 .hero__container{
     max-width: 800px;

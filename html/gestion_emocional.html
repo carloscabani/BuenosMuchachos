@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Buenos Muchachos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/estilosContenidos.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <meta name="theme-color" content="#2091F9">
+</head>
+
+<body>
+    <!-- Div para header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Script para cargar el header.html -->
+    <script>
+        fetch('commonHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+    </script>
+
+    <main class="container">
+        <section class="content">
+            <h1>Herramientas de Gestión Emocional</h1>
+            <p><strong>1. Respiración profunda:</strong>
+                La respiración profunda es una técnica poderosa para calmar la mente y
+                reducir el estrés. Practicar una técnica como la "respiración 4-7-8"
+                (inhalar durante 4 segundos, retener por 7 y exhalar por 8) ayuda a disminuir
+                la frecuencia cardíaca y activar el sistema nervioso parasimpático, que facilita
+                la relajación. Esta práctica es útil en momentos de ansiedad o cuando se necesita
+                un reset emocional rápido. Al enfocarse en la respiración, la mente se centra en
+                el presente y se aleja de pensamientos estresantes. Es un ejercicio fácil de realizar
+                en cualquier momento y lugar.
+            </p>
+
+            <p><strong>2. Mindfulness o atención plena</strong>
+                El mindfulness o atención plena se enfoca en vivir el momento presente sin juzgar.
+                Practicarlo ayuda a reducir la reactividad emocional, pues permite observar los pensamientos
+                y sentimientos desde una perspectiva de aceptación y sin crítica. Esto reduce el estrés y
+                fomenta una mentalidad más tranquila y consciente. Al integrar mindfulness en la vida diaria,
+                se fortalece la capacidad de responder, en lugar de reaccionar, a las situaciones. Además,
+                ayuda a aumentar la empatía y mejorar la relación con uno mismo.
+            </p>
+
+            <img src="../images/ambienteUniversitario.jpg" alt="Ambiente Universitario" class="imagen-blog">
+
+            <p><strong>3. Diario emocional</strong>
+                Llevar un diario emocional implica escribir sobre las emociones y pensamientos que surgen a diario.
+                Este hábito fomenta una mejor comprensión de uno mismo, permite identificar patrones de comportamiento
+                y ofrece un espacio para expresar emociones que de otro modo podrían quedar reprimidas. Es una
+                herramienta
+                útil para liberar tensiones y aclarar pensamientos en momentos de confusión o estrés. Además, el proceso
+                de
+                escritura en sí puede ser terapéutico, ayudando a procesar y soltar lo que ya no se necesita cargar
+                emocionalmente.
+            </p>
+
+            <p><strong>4. Técnica de reevaluación cognitiva</strong>
+                La reevaluación cognitiva ayuda a reinterpretar situaciones estresantes y a cambiar la perspectiva
+                desde la cual se perciben. En lugar de reaccionar impulsivamente, esta técnica invita a reflexionar
+                sobre lo que podemos aprender de una situación difícil o qué tan reales son nuestras preocupaciones.
+                Preguntas como "¿es tan grave como creo?" o "¿qué evidencia tengo para pensar así?" ayudan a reducir
+                la intensidad emocional. Es una herramienta valiosa para fortalecer la resiliencia emocional y fomentar
+                un enfoque más positivo y constructivo.
+            </p>
+
+            <p><strong>5. Ejercicio físico</strong>
+                El ejercicio físico es un recurso excelente para reducir el estrés y mejorar el estado de ánimo,
+                ya que ayuda a liberar endorfinas, conocidas como las "hormonas de la felicidad". Aunque se trate
+                de una caminata corta o unos minutos de estiramiento, la actividad física tiene un efecto inmediato
+                en el cuerpo y la mente. Además de sus beneficios físicos, ayuda a liberar tensiones emocionales
+                acumuladas
+                y mejora la concentración. Incorporarlo de manera regular en la rutina es una inversión tanto para la
+                salud
+                mental como para el bienestar general.
+            </p>
+            <img src="../images/estudiante_workout.jpg" alt="Estudiante haciendo actividad física" class="imagen-blog">
+        </section>
+    </main>
+
+
+    <!-- Llamada del footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+    </script>
+
+    <script src="../js/navegacion.js"></script>
+
+</body>
+
+</html>

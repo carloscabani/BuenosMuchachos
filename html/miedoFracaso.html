@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Buenos Muchachos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/estilosContenidos.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <meta name="theme-color" content="#2091F9">
+</head>
+
+<body>
+    <!-- Llamada CommonHeader -->
+    <div id="header-placeholder"></div>
+
+    <!-- Script para cargar el header desde header.html -->
+    <script>
+        fetch('commonHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+    </script>
+
+    <!-- Contenido -->
+    <main class="container">
+        <section class="content">
+            <h1>Miedo al Fracaso en Estudiantes Universitarios</h1>
+
+            <p>El miedo al fracaso es una experiencia común entre los estudiantes universitarios, especialmente
+                cuando sienten la presión de cumplir con altas expectativas académicas, personales y familiares.
+                Este miedo a menudo se manifiesta como ansiedad, procrastinación y falta de confianza, generando
+                obstáculos que afectan tanto el rendimiento académico como el bienestar mental. Para muchos
+                estudiantes, el riesgo de no cumplir con estas expectativas parece elevado, y la posibilidad de
+                fallar puede llevarlos a evitar ciertas oportunidades, reducir su motivación y limitar su crecimiento.
+                Sin embargo, comprender que el fracaso es una parte natural del proceso de aprendizaje puede ayudarles
+                a cambiar su enfoque y ver cada desafío como una oportunidad valiosa para crecer.</p>
+            <img src="../images/fracaso1.jpg" alt="Ambiente Universitario" class="imagen-blog">
+
+
+            <p>Además, el miedo al fracaso suele intensificarse en el entorno competitivo de las universidades, donde
+                los estudiantes pueden caer en comparaciones con sus compañeros y sentir una presión constante por
+                sobresalir.
+                Esta comparación continua puede minar la autoconfianza y desmotivar a los estudiantes a probar nuevas
+                experiencias
+                o explorar áreas fuera de su zona de confort. Para contrarrestarlo, resulta útil implementar estrategias
+                como
+                establecer metas realistas y alcanzables, practicar la autocompasión y reconocer sus propios logros, por
+                pequeños que sean. Al enfocarse en su propio proceso en lugar de en estándares externos, los estudiantes
+                pueden
+                desarrollar resiliencia y un sentido de logro personal.</p>
+            <img src="../images/fracaso2.jpg" alt="Ambiente Universitario" class="imagen-blog">
+
+            <p>Construir resiliencia frente a los fracasos también es crucial. Adoptar una mentalidad de crecimiento —la
+                creencia de
+                que las habilidades pueden desarrollarse a través del esfuerzo y el aprendizaje de los errores— permite
+                a los
+                estudiantes ver el fracaso no como algo definitorio, sino como un paso hacia el éxito futuro. Las
+                universidades
+                también pueden apoyar esta mentalidad al fomentar entornos donde los estudiantes se sientan seguros para
+                asumir riesgos,
+                pedir ayuda y ver el fracaso como una experiencia de aprendizaje, y no como una medida de su valor. Al
+                redefinir el
+                fracaso como una herramienta de crecimiento, los estudiantes pueden navegar su vida académica con mayor
+                confianza,
+                adaptabilidad y una perspectiva a largo plazo.</p>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <!-- Script para el footer-->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+    </script>
+
+    <script src="../js/navegacion.js"></script>
+</body>
+
+</html>

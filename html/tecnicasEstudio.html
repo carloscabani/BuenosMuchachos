@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Buenos Muchachos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/estilosContenidos.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <meta name="theme-color" content="#2091F9">
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <!-- Script para cargar el header desde header.html -->
+    <script>
+        fetch('commonHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+                const link = document.createElement('link');
+                link.rel = 'shortcut icon';
+                link.href = '../images/logo.png';
+                link.type = 'image/x-icon';
+                document.head.appendChild(link);
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+    </script>
+
+    <!-- Contenido de Técnicas de Estudio -->
+    <main class="container">
+        <section class="content">
+            <h1>Técnicas de Estudio Efectivas para Triunfar en la Universidad 🎓📚</h1>
+            <p>¿Quieres mejorar tus calificaciones y aprovechar al máximo tu tiempo de estudio? Aquí tienes algunas técnicas probadas para que estudiar sea más eficiente y menos estresante:</p>
+
+            <h2>1. Método Pomodoro 🍅</h2>
+            <p><strong>¿Cómo hacerlo?</strong> Trabaja durante 25 minutos (esto es un “pomodoro”) y luego toma un descanso de 5 minutos. Después de completar cuatro “pomodoros” (100 minutos de trabajo en total), toma un descanso más largo de 15-30 minutos.</p>
+            <p><strong>Beneficios:</strong> Ayuda a reducir la fatiga y mantener la motivación alta. Además, los descansos permiten que el cerebro procese la información de forma más efectiva.</p>
+            <img src="../images/pomodoro.jpg" alt="Técnica Pomodoro" class="imagen-blog">
+
+            <h2>2. Mapas Mentales 🧠</h2>
+            <p><strong>¿Cómo hacerlo?</strong> Coloca el tema principal en el centro de una hoja y traza líneas que conecten subtemas o ideas relacionadas, añadiendo palabras clave y dibujos para fortalecer la memorización.</p>
+            <p><strong>Beneficios:</strong> Facilita la comprensión de temas complejos y estimula la memoria visual. Es especialmente útil para estudiar materias con muchos conceptos interrelacionados, como historia, biología o literatura.</p>
+            <img src="../images/mapas mentales.jpg" alt="Técnica Mapa Mental" class="imagen-blog">
+
+            <h2>3. Pruebas de Autoevaluación ✅</h2>
+            <p><strong>¿Cómo hacerlo?</strong> Crea preguntas sobre el material de estudio o usa tarjetas de memoria (flashcards) para evaluar tus conocimientos sin mirar tus apuntes. Repite este ejercicio hasta sentirte seguro en cada tema.</p>
+            <p><strong>Beneficios:</strong> Identifica de manera rápida tus áreas débiles y refuerza el proceso de memorización. Además, te ayuda a acostumbrarte a la presión de los exámenes.</p>
+            <img src="../images/autoevaluacion.jpg" alt="Técnica de Autoevaluación" class="imagen-blog">
+
+            <h2>4. Técnica Feynman 💡</h2>
+            <p><strong>¿Cómo hacerlo?</strong> Toma un concepto que necesites entender y explícalo en voz alta usando tus propias palabras, como si estuvieras enseñándolo a alguien que no tiene conocimientos previos en el tema.</p>
+            <p><strong>Beneficios:</strong> Al simplificar el material y explicarlo, descubres brechas en tu comprensión y afianzas el conocimiento. Es ideal para materias que requieren entender conceptos en profundidad, como matemáticas, física o filosofía.</p>
+            <img src="../images/feynman.jpg" alt="Técnica Feynman" class="imagen-blog">
+
+            <p>Estas técnicas, aplicadas de forma constante, pueden transformar tu manera de estudiar y hacer que cada sesión sea más productiva. ¡Prueba cada una y encuentra la que mejor se adapte a tu estilo de aprendizaje! 🚀</p>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Script para cargar el footer desde footer.html -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+    </script>
+
+    <script src="../js/navegacion.js"></script>
+</body>
+</html>
