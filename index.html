@@ -1,11 +1,361 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TZ7NXE7E7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-2TZ7NXE7E7');
+    </script>
+
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://carloscabani.github.io/BuenosMuchachos/html/index.html">
-    <title>Redireccionando...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Buenos Muchachos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/estilosContenidos.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <meta name="theme-color" content="#2091F9">
+
 </head>
+
 <body>
-    <p>Redireccionando a la página principal...</p>
+
+    <div id="header-placeholder"></div>
+    <!-- Script para commonHeader.html -->
+    <script>
+        fetch('/html/commonHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+    </script>
+
+    <main>
+        <section class="container about">
+            <h2 class="subtitle">¿Qué ganarás con nuestro servicio?</h2>
+            <p class="about__paragraph">Apartado de relleno</p>
+
+            <div class="about__main">
+
+                <article class="about__icons">
+                    <img src="../images/shapes.svg" alt="" class="about__icon">
+                    <h3 class="about__title">Tiempo</h3>
+                    <p class="about__paragraph">Lorem ipsum dolor sit amet.</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="../images/paint.svg" alt="" class="about__icon">
+                    <h3 class="about__title">Organizacion</h3>
+                    <p class="about__paragraph">Lorem ipsum dolor sit amet.</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="../images/code.svg" alt="" class="about__icon">
+                    <h3 class="about__title">Efectividad</h3>
+                    <p class="about__paragraph">Lorem ipsum dolor sit amet.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="knowledge" id="nosotros">
+            <div class="knowledge__container container">
+                <div class="knowledge__texts">
+                    <h2 class="subtitle">¡Que no te pase lo mismo que a nosotros!</h2>
+                    <p class="knowledge__paragraph">Muy seguramente en tus primeras semanas de universidad
+                        no sabes que hacer ni por donde empezar a estudiar, tranquilo/a, aunque nosotros estudiamos
+                        distintas carreras, también estuvimos en tu lugar, es por eso que este servicio es
+                        diseñado por y para ti...
+                    </p>
+                    <a href="/html/nosotros.html" class="cta">¡Conócenos!</a>
+                </div>
+                <figure class="knowledge__picture">
+                    <img src="/images/macbook.png" alt="" class="knowledge__img">
+                </figure>
+            </div>
+        </section>
+
+        <section class="price container" id="planes">
+            <h2 class="subtitle">Obtén el plan perfecto para aprender</h2>
+            <div class="price__table">
+
+                <div class="price__element">
+
+                    <p class="price__name">Amigable</p>
+                    <h3 class="price__price">¡Gratis!</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Organización</p>
+                        <p class="price__features">Recomendaciones</p>
+                        <p class="price__features">Guías</p>
+                    </div>
+                    <a href="#" class="price__cta">¡Empieza ya!</a>
+                </div>
+
+                <div class="price__element price__element--best">
+
+                    <p class="price__name">Politécnico</p>
+                    <h3 class="price__price">$10/mes</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Material de estudio</p>
+                        <p class="price__features">Acompañamiento uno a uno</p>
+                        <p class="price__features">Horarios personalizados</p>
+                    </div>
+                    <a href="#" class="price__cta">¡Empieza ya!</a>
+                </div>
+
+                <div class="price__element">
+
+                    <p class="price__name">Mastodonte (todo lo del nivel Politécnico mas:)</p>
+                    <h3 class="price__price">15$/mes</h3>
+
+                    <div class="price__items">
+                        <p class="price__features">Organización integral</p>
+                        <p class="price__features">Guías personalizadas de estudio</p>
+                        <p class="price__features">Recopilación actualizada de material</p>
+                    </div>
+                    <a href="#" class="price__cta">¡Empieza ya!</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="testimony">
+            <div class="testimony__container container">
+                <img src="../images/leftarrow.svg" alt="" class="testimony__arrow" id="before">
+
+
+                <section class="testimony__body testimony__body--show" data-id="1">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Mi nombre es Jhon Alejandro, <span class="testimony__course">
+                                y soy esquizofrénico</span></h2>
+                        <p class="testimony__review">No soy nada de atractivo, mucho menos fotogénico,
+                            Mi mejor amigo es un payaso que me aconseja,
+                            Tiene ojos de rana y vive dentro de mi oreja</p>
+
+                    </div>
+
+                    <figure class="testimony__picture">
+                        <img src="../images/estudiante1.jpg" alt="" class="testimony__img">
+                    </figure>
+                </section>
+
+
+
+                <section class="testimony__body" data-id="2">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Mi nombre es Francisco Pizarro, <span class="testimony__course">
+                                estudiante de Nutrición</span></h2>
+                        <p class="testimony__review">Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Vel eveniet ratione quidem
+                            omnis veritatis dicta alias reprehenderit accusantium</p>
+
+                    </div>
+
+                    <figure class="testimony__picture">
+                        <img src="../images/estudiante2.jpg" alt="" class="testimony__img">
+                    </figure>
+                </section>
+
+
+
+                <section class="testimony__body" data-id="3">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Mi nombre Alejandra Quintanilla, <span class="testimony__course">
+                                estudiante de Diseño Gráfico</span></h2>
+                        <p class="testimony__review">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Iure corporis repellat esse, molestias officiis minus voluptas culpa consequatur ipsam at.
+                        </p>
+
+                    </div>
+
+                    <figure class="testimony__picture">
+                        <img src="../images/estudiante3.jpg" alt="" class="testimony__img">
+                    </figure>
+                </section>
+
+                <img src="../images/rightarrow.svg" class="testimony__arrow" id="next">
+
+            </div>
+        </section>
+
+        <section class="questions container">
+            <h2 class="subtitle">Preguntas frecuentes</h2>
+            <p class="questions__paragraph">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, porro
+                doloribus neque perspiciatis sapiente fuga.</p>
+
+            <section class="questions__container">
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">¿Mejoraré mi rendimiento?
+                            <span class="questions__arrow">
+                                <img src="../images/arrow.svg" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">¿Cuánto demoraré en acostumbrarme?
+                            <span class="questions__arrow">
+                                <img src="../images/arrow.svg" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">¿Qué pasa si fallo?
+                            <span class="questions__arrow">
+                                <img src="../images/arrow.svg" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>
+                    </div>
+                </article>
+            </section>
+
+
+            <!-- Blog apartado-->
+            <section class="container blogs" id="blog">
+                <h2 class="subtitle">Últimos Blogs</h2>
+
+                <div class="container-blogs">
+                    <div class="card-blog">
+                        <div class="container-img">
+                            <img src="../images/frustrado.jpg" alt="Imagen Blog 1" class="blog-img1" />
+                            <div class="button-group-blog">
+                                <span>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                                <span>
+                                    <i class="fa-solid fa-link"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="content-blog">
+                            <h3>Herramientas de gestión emocional</h3>
+                            <span>5 Noviembre 2024</span>
+                            <p>
+                                Las herramientas de gestión emocional son prácticas efectivas para ayudar a las
+                                personas a enfrentar el estrés, la ansiedad y otros desafíos emocionales
+                                cotidianos. Estas técnicas, que van desde....
+                            </p>
+                            <div class="btn-read-more">
+                                <a href="/html/gestion_emocional.html">Leer más</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-blog">
+                        <div class="container-img">
+                            <img src="../images/actividades.jpg" alt="Imagen Blog 2" class="blog-img2" />
+                            <div class="button-group-blog">
+                                <span>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                                <span>
+                                    <i class="fa-solid fa-link"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="content-blog">
+                            <h3>Técnicas de estudio</h3>
+                            <span>5 Noviembre 2024</span>
+                            <p>
+                                Las técnicas de estudio son estrategias diseñadas para mejorar
+                                la eficiencia y efectividad en el aprendizaje. A través de métodos
+                                como la toma de apuntes, la organización del tiempo y el uso de mnemotécnicas...
+                            </p>
+                            <div class="btn-read-more">
+                                <a href="/html/tecnicasEstudio.html">Leer más</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-blog">
+                        <div class="container-img">
+                            <img src="../images/calendario.jpg" alt="Imagen Blog 3" class="blog-img3" />
+                            <div class="button-group-blog">
+                                <span>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                                <span>
+                                    <i class="fa-solid fa-link"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="content-blog">
+                            <h3>Miedo al fracaso</h3>
+                            <span>5 Noviembre 2024</span>
+                            <p>
+                                Esta sensación de temor es muy común y puede surgir ante la posibilidad de
+                                no cumplir con expectativas propias o ajenas, a menudo limita la capacidad
+                                de asumir riesgos o enfrentar nuevos desafíos...
+                            </p>
+                            <div class="btn-read-more">
+                                <a href="/html/miedoFracaso.html">Leer más</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+
+    </main>
+    <!-- Llamada del footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script para cargar el footer desde footer.html -->
+    <script>
+        fetch('/html/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+    </script>
+
+    <script src="../js/slider.js"></script>
+    <script src="../js/questions.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="https://kit.fontawesome.com/81581fb069.js"></script>
+    <script src="../js/navegacion.js"></script>
+
 </body>
+
 </html>

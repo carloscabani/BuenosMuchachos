@@ -614,92 +614,80 @@ body{
 
 /* Footer */
 
-.footer{
-    background-color: #1D293F;
-}
-
-.footer__title{
-    font-weight: 300;
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-.footer__title, .footer__newsletter{
+/* Fondo del footer */
+.footer {
+    background-color: #7777e3; 
     color: #fff;
-}
-
-
-.footer__container{
+    padding: 50px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 60px;
+    flex-wrap: wrap; /* Permite ajustar en pantallas pequeñas */
 }
 
-.nav--footer{
-    padding-bottom: 20px;
-    display: grid;
-    gap: 1em;
-    grid-auto-flow: row;
-    height: 100%;
-}
-
-.nav__link--footer{
+/* Contenedor general */
+.footer__content {
     display: flex;
-    margin: 0;
-    margin-right: 20px;
-    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
 }
 
-.footer__inputs{
-    margin-top: 10px;
-    display: flex;
-    overflow: hidden;
+/* Panel Blanco */
+.footer__promo {
+    flex: 1;
+    max-width: 400px; /* Tamaño del panel */
 }
 
-.footer__input{
+.promo__card {
     background-color: #fff;
-    height: 50px;
-    display: block;
-    padding-left: 10px;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
-    border: none;
-    margin-right: 16px;
-}
-
-.footer__submit{
-    margin-left: auto;
-    display: inline-block;
-    height: 50px;
-    padding: 0 20px ;
-    background-color: #2091F9;
-    border: none;
-    font-size: 1rem;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.footer__copy{
-    --padding-container: 30px 0;
+    color: #000;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    color: #fff;
 }
 
-.footer__copyright{
-    font-weight: 300;
+.promo__apps img {
+    width: 120px; /* Tamaño de los logos */
+    margin: 10px;
 }
 
-.footer__icons{
+/* Links */
+.footer__links {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.footer__links h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer__links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer__links ul li {
     margin-bottom: 10px;
 }
 
-.footer__img{
-    width: 30px;
+.footer__links ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
 }
+
+.footer__links ul li a:hover {
+    color: #1dbf73; /* Efecto al pasar el mouse */
+}
+
+
 
 /* Media queries */
 
