@@ -5,39 +5,6 @@
     --color-title: #001A49;
 }
 
-/* CSS para la animación de entrada */
-.fade-in {
-    opacity: 0;
-    animation: fadeInAnimation 1.2s forwards;
-}
-
-/* CSS para la animación de salida */
-.fade-out {
-    opacity: 1;
-    animation: fadeOutAnimation 1.2s forwards;
-}
-
-/* Animación de desvanecimiento de entrada */
-@keyframes fadeInAnimation {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Animación de desvanecimiento de salida */
-@keyframes fadeOutAnimation {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-
 html {
     scroll-behavior: smooth;
 }
