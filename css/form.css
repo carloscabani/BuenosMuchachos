@@ -1,0 +1,114 @@
+/* form.css */
+
+/* Paleta de Colores (aproximada) */
+:root {
+    --color-crema: #FFF1E1;
+    /* color superior */
+    --color-durazno: #F4C186;
+    /* franja durazno */
+    --color-cafe: #5D3A00;
+    /* franja café */
+    --color-negro: #1C1B1B;
+    /* casi negro */
+}
+
+/* Body con fondo crema */
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--color-crema);
+    font-family: Arial, sans-serif;
+    color: var(--color-cafe);
+}
+
+/* Títulos */
+h1,
+h2,
+h3 {
+    color: var(--color-cafe);
+}
+
+/* Contenedor para las 3 secciones en horizontal */
+.form-container {
+    display: flex;
+    gap: 10px;
+    /* Espacio entre secciones */
+    margin-bottom: 20px;
+}
+
+
+/* Cada sección del formulario */
+.section {
+    background-color: var(--color-durazno);
+    border: 2px solid var(--color-cafe);
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1;
+}
+
+#materiasContainer {
+    display: flex;
+    flex-direction: column; /* Organiza las filas verticalmente */
+    gap: 15px; /* Ajusta el valor del espacio vertical entre las filas */
+}
+
+
+#comidasContainer {
+    display: flex;
+    flex-direction: column; /* Organiza las filas verticalmente */
+    gap: 15px; /* Ajusta el valor del espacio vertical entre las filas */
+}
+
+
+
+/* Botones */
+.btn,
+.btn-generate {
+    background-color: var(--color-cafe);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover,
+.btn-generate:hover {
+    background-color: #8B5A2C;
+    /* café más claro */
+}
+
+/* Bloque del horario */
+.horario-result {
+    margin-top: 20px;
+}
+
+/* Tabla Cuadrícula */
+.tabla-cuadricula {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-cuadricula th,
+.tabla-cuadricula td {
+    border: 1px solid var(--color-cafe);
+    padding: 8px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #FFFDFC;
+    /* un tono muy claro, parecido al crema, 
+       para contrastar con var(--color-durazno) */
+}
+
+.tabla-cuadricula th {
+    background-color: #FFE5CC;
+    /* más claro que durazno */
+}
+
+.hora-col {
+    width: 70px;
+    font-weight: bold;
+    background-color: #FFE5CC;
+}

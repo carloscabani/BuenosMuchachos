@@ -7,7 +7,7 @@
     <title>Los Buenos Muchachos</title>
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/estilosContenidos.css">
+    <link rel="stylesheet" href="../css/estilos-contenidos.css">
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     <meta name="theme-color" content="#2091F9">
 </head>
@@ -18,7 +18,7 @@
 
     <!-- Script para cargar el header desde header.html -->
     <script>
-        fetch('commonHeader.html')
+        fetch('common_header.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header-placeholder").innerHTML = data;

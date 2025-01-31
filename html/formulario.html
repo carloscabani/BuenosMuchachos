@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Los Buenos Muchachos</title>
+  <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+  <!-- Enlazamos la hoja de estilos externa con la paleta de colores -->
+  <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+
+<h1>Generador de Horario Semanal</h1>
+
+<!-- Contenedor en horizontal para las 3 secciones -->
+<div class="form-container">
+
+  <!-- Sección: Disponibilidad por Día -->
+  <div class="section">
+    <h2>Disponibilidad por día</h2>
+    <p>Ingresa la hora de inicio y cuántas horas disponibles para cada día.</p>
+    <div id="diasContainer"></div>
+  </div>
+
+  <!-- Sección: Materias -->
+  <div class="section">
+    <h2>Materias</h2>
+    <p>Ingresa el nombre de la materia y selecciona su prioridad.</p>
+    <div id="materiasContainer"></div>
+    <button type="button" class="btn" onclick="agregarMateria()">Agregar Materia</button>
+  </div>
+
+  <!-- Sección: Comidas -->
+  <div class="section">
+    <h2>Comidas</h2>
+    <p>Ingresa la hora de cada comida. Se aplican a todos los días.</p>
+    <div id="comidasContainer"></div>
+    <button type="button" class="btn" onclick="agregarComida()">Agregar Comida</button>
+  </div>
+
+</div><!-- fin .form-container -->
+
+<!-- Botón Generar Horario (INMEDIATAMENTE DESCARGA ICS) -->
+<div style="margin-top: 20px;">
+  <button class="btn-generate" onclick="generarHorario()">Generar Horario y Descargar ICS</button>
+</div>
+
+<!-- Bloque del horario generado -->
+<div class="horario-result" id="horarioResult"></div>
+
+<script>
+// -------------------------------
+// CONFIGURACIONES Y VARIABLES
+// -------------------------------
+const DIAS_SEMANA = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+const MAX_MATERIAS = 6;
+const MAX_COMIDAS = 5;
+
+let contadorMaterias = 0;
+let contadorComidas = 0;
+
+// Al cargar la página, generamos los inputs para cada día
+window.onload = function(){
+  const diasContainer = document.getElementById('diasContainer');
+  DIAS_SEMANA.forEach((dia, index) => {
+    const div = document.createElement('div');
+    div.className = 'dia-item';
+    div.innerHTML = `
+      <h3>${dia}</h3>
+      <label>Hora de inicio:</label>
+      <input type="time" class="horaInicioDia" data-dia="${index}" value="06:00"><br>
+      <label>Horas disponibles:</label>
+      <input type="number" min="1" max="24" value="0" class="horasDisponiblesDia" data-dia="${index}">
+    `;
+    diasContainer.appendChild(div);
+  });
+};
+
+function agregarMateria() {
+  if (contadorMaterias >= MAX_MATERIAS) return;
+  contadorMaterias++;
+
+  const materiasContainer = document.getElementById('materiasContainer');
+  const div = document.createElement('div');
+  div.className = 'materia-item';
+  div.innerHTML = `
+    <input type="text" placeholder="Nombre materia" class="nombreMateria" style="width:120px;">
+    <select class="prioridadMateria">
+      <option value="alta">Alta</option>
+      <option value="media">Media</option>
+      <option value="baja">Baja</option>
+    </select>
+  `;
+  materiasContainer.appendChild(div);
+}
+
+function agregarComida() {
+  if (contadorComidas >= MAX_COMIDAS) return;
+  contadorComidas++;
+
+  const comidasContainer = document.getElementById('comidasContainer');
+  const div = document.createElement('div');
+  div.className = 'comida-item';
+  div.innerHTML = `
+    <label>Comida ${contadorComidas}:</label>
+    <input type="time" class="horaComida">
+  `;
+  comidasContainer.appendChild(div);
+}
+
+// -------------------------------
+// GENERAR HORARIO (DESCARGA ICS)
+// -------------------------------
+function generarHorario() {
+  // 1) Recoger disponibilidad
+  const horasDisponiblesInputs = document.querySelectorAll('.horasDisponiblesDia');
+  const horaInicioInputs = document.querySelectorAll('.horaInicioDia');
+  let disponibilidadSemanal = [];
+  for (let i=0; i<DIAS_SEMANA.length; i++){
+    let horaInicioStr = horaInicioInputs[i].value;
+    let horasDisp = parseFloat(horasDisponiblesInputs[i].value) || 0;
+    let [hH, hM] = horaInicioStr.split(':').map(Number);
+    let inicioEnMinutos = hH*60 + hM;
+
+    disponibilidadSemanal.push({
+      diaIndex: i,
+      inicioEnMinutos,
+      horasDisp
+    });
+  }
+
+  // 2) Recoger Materias
+  const materiasElements = document.querySelectorAll('#materiasContainer .materia-item');
+  const materias = [];
+  materiasElements.forEach(item => {
+    const nombre = item.querySelector('.nombreMateria').value.trim();
+    const prioridad = item.querySelector('.prioridadMateria').value;
+    if (nombre) {
+      materias.push({ nombre, prioridad });
+    }
+  });
+
+  // 3) Recoger Comidas
+  const comidasElements = document.querySelectorAll('#comidasContainer .comida-item');
+  const comidas = [];
+  comidasElements.forEach((item, i) => {
+    const horaComidaStr = item.querySelector('.horaComida').value;
+    if (horaComidaStr) {
+      comidas.push({ label: `Comida ${i+1}`, hora: horaComidaStr });
+    }
+  });
+
+  // 4) Asignar pesos a materias
+  let totalPeso = 0;
+  materias.forEach(m => {
+    switch(m.prioridad) {
+      case 'alta': m.peso = 3; break;
+      case 'media': m.peso = 2; break;
+      case 'baja':  m.peso = 1; break;
+    }
+    totalPeso += m.peso;
+  });
+
+  // 5) Convertir comidas a rangos (30 min)
+  let comidasRangosBase = comidas.map(c => {
+    let [hC, mC] = c.hora.split(':').map(Number);
+    let inicio = hC*60 + mC;
+    let fin = inicio + 30;
+    return { label: c.label, inicio, fin };
+  });
+  comidasRangosBase.sort((a,b)=> a.inicio - b.inicio);
+
+  // 6) Generar cronogramaSemanal
+  let cronogramaSemanal = [];
+  for (let disp of disponibilidadSemanal) {
+    let dayIndex = disp.diaIndex;
+    let inicioEnMinutos = disp.inicioEnMinutos;
+    let rangoFin = inicioEnMinutos + disp.horasDisp * 60;
+
+    let bloquesTiempo = [{
+      inicio: inicioEnMinutos,
+      fin: rangoFin,
+      tipo: 'estudio'
+    }];
+
+    for (let cr of comidasRangosBase) {
+      let nuevosBloques = [];
+      for (let bloque of bloquesTiempo) {
+        if (bloque.tipo==='estudio') {
+          let bIni = bloque.inicio;
+          let bFin = bloque.fin;
+          let cIni = cr.inicio;
+          let cFin = cr.fin;
+
+          if (cFin <= bIni || cIni >= bFin) {
+            nuevosBloques.push(bloque);
+          } else {
+            if (cIni > bIni) {
+              nuevosBloques.push({ inicio: bIni, fin: cIni, tipo:'estudio' });
+            }
+            let interIni = Math.max(bIni, cIni);
+            let interFin = Math.min(bFin, cFin);
+            nuevosBloques.push({ inicio: interIni, fin: interFin, tipo:'comida', label: cr.label });
+            if (cFin < bFin) {
+              nuevosBloques.push({ inicio: cFin, fin: bFin, tipo:'estudio' });
+            }
+          }
+        } else {
+          nuevosBloques.push(bloque);
+        }
+      }
+      bloquesTiempo = nuevosBloques;
+    }
+
+    let minutosEstudio = 0;
+    bloquesTiempo.forEach(b => {
+      if (b.tipo==='estudio') {
+        minutosEstudio += (b.fin - b.inicio);
+      }
+    });
+
+    let materiasDia = JSON.parse(JSON.stringify(materias));
+    materiasDia.forEach(m => {
+      if (totalPeso>0) {
+        m.minutosAsignados = Math.floor(minutosEstudio * m.peso / totalPeso);
+      } else {
+        m.minutosAsignados = 0;
+      }
+    });
+
+    let cronogramaDia = [];
+    let materiaIndex = 0;
+    let bloqueEstudioIndex = 0;
+
+    while (materiaIndex < materiasDia.length) {
+      let mat = materiasDia[materiaIndex];
+      let porAsignar = mat.minutosAsignados;
+      if (porAsignar <= 0) {
+        materiaIndex++;
+        continue;
+      }
+
+      while (bloqueEstudioIndex < bloquesTiempo.length && porAsignar>0) {
+        let bloque = bloquesTiempo[bloqueEstudioIndex];
+        if (bloque.tipo !== 'estudio') {
+          bloqueEstudioIndex++;
+          continue;
+        }
+        let bDur = bloque.fin - bloque.inicio;
+        if (bDur<=0) {
+          bloqueEstudioIndex++;
+          continue;
+        }
+
+        if (bDur >= porAsignar) {
+          let subFin = bloque.inicio + porAsignar;
+          cronogramaDia.push({ diaIndex: dayIndex, nombre: mat.nombre, inicio: bloque.inicio, fin: subFin, tipo: 'materia' });
+          bloque.inicio = subFin;
+          porAsignar=0;
+        } else {
+          cronogramaDia.push({ diaIndex: dayIndex, nombre: mat.nombre, inicio: bloque.inicio, fin: bloque.fin, tipo: 'materia' });
+          porAsignar -= bDur;
+          bloque.inicio = bloque.fin;
+          bloqueEstudioIndex++;
+        }
+      }
+      materiaIndex++;
+    }
+
+    // Añadir comidas para visualización
+    bloquesTiempo.forEach(b => {
+      if (b.tipo==='comida') {
+        cronogramaDia.push({ diaIndex: dayIndex, nombre: b.label||'Comida', inicio: b.inicio, fin: b.fin, tipo:'comida' });
+      }
+    });
+
+    cronogramaDia.sort((a,b)=> a.inicio - b.inicio);
+
+    // Gestión Emocional (1 hora al final)
+    let ultimoFin = inicioEnMinutos;
+    cronogramaDia.forEach(c => { if(c.fin>ultimoFin) ultimoFin=c.fin; });
+    let gestionIni = Math.max(ultimoFin, rangoFin);
+    let gestionFin = gestionIni + 60;
+    cronogramaDia.push({ diaIndex: dayIndex, nombre: 'Gestión Emocional', inicio: gestionIni, fin: gestionFin, tipo:'gestion' });
+
+    cronogramaSemanal = cronogramaSemanal.concat(cronogramaDia);
+  }
+
+  cronogramaSemanal.sort((a,b)=>{
+    if (a.diaIndex !== b.diaIndex) return a.diaIndex - b.diaIndex;
+    return a.inicio - b.inicio;
+  });
+
+  // Ajustar dinamicamente el rango de horas
+  let earliestMin = Infinity;
+  let latestMin = 0;
+  cronogramaSemanal.forEach(act => {
+    if(act.inicio<earliestMin) earliestMin=act.inicio;
+    if(act.fin>latestMin) latestMin=act.fin;
+  });
+  let earliestHour = Math.floor(earliestMin/60);
+  let latestHour  = Math.ceil(latestMin/60);
+
+  construirHorarioCuadricula(cronogramaSemanal, earliestHour, latestHour);
+
+  // Generar y descargar ICS automáticamente
+  const icsData = generarICS(cronogramaSemanal);
+  descargarICS(icsData);
+}
+
+function construirHorarioCuadricula(cronogramaSemanal, horaMin, horaMax){
+  let html = `<h2>Horario Semanal (Vista Cuadrícula)</h2>`;
+  html += `<table class="tabla-cuadricula">`;
+  html += `<tr><th class="hora-col">Hora</th>`;
+  DIAS_SEMANA.forEach(d => { html += `<th>${d}</th>`; });
+  html += `</tr>`;
+
+  for(let hora=horaMin; hora<=horaMax; hora++){
+    let horaStr = hora.toString().padStart(2,'0')+":00";
+    html += `<tr>`;
+    html += `<td class="hora-col">${horaStr}</td>`;
+    for(let dIndex=0; dIndex<DIAS_SEMANA.length; dIndex++){
+      let bloqueInicio = hora*60;
+      let bloqueFin = (hora+1)*60;
+      let actividades = cronogramaSemanal.filter(act => 
+        act.diaIndex===dIndex && act.fin>bloqueInicio && act.inicio<bloqueFin
+      );
+      let cellText = actividades.map(a => 
+        `${a.nombre} (${formatoHora(a.inicio)}-${formatoHora(a.fin)})`
+      ).join('\n');
+      html += `<td>${cellText}</td>`;
+    }
+    html += `</tr>`;
+  }
+
+  html += `</table>`;
+  document.getElementById('horarioResult').innerHTML = html;
+}
+
+function formatoHora(minTotal){
+  let hh = Math.floor(minTotal/60);
+  let mm = minTotal%60;
+  return hh.toString().padStart(2,'0') + ":" + mm.toString().padStart(2,'0');
+}
+
+// Generar ICS
+function generarICS(cronogramaSemanal){
+  let hoy = new Date();
+  let dayOfWeek = hoy.getDay();
+  let offset = (dayOfWeek+6)%7;
+  let lunesBase = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()-offset);
+
+  let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MiHorario//ES\n";
+
+  cronogramaSemanal.forEach(act => {
+    let fechaDia = new Date(lunesBase);
+    fechaDia.setDate(lunesBase.getDate()+act.diaIndex);
+
+    let actInicio = new Date(fechaDia);
+    actInicio.setMinutes(fechaDia.getMinutes()+act.inicio);
+
+    let actFin = new Date(fechaDia);
+    actFin.setMinutes(fechaDia.getMinutes()+act.fin);
+
+    let dtStart = formatearICSDateTime(actInicio);
+    let dtEnd   = formatearICSDateTime(actFin);
+    let dtStamp = formatearICSDateTime(new Date());
+    let uid = "UID-" + act.diaIndex + "-" + act.inicio + "-" + act.fin + "-" + Math.random().toString().slice(2);
+
+    ics += "BEGIN:VEVENT\n";
+    ics += `UID:${uid}\n`;
+    ics += `DTSTAMP:${dtStamp}\n`;
+    ics += `DTSTART:${dtStart}\n`;
+    ics += `DTEND:${dtEnd}\n`;
+    ics += `SUMMARY:${act.nombre}\n`;
+    ics += `DESCRIPTION:Generado desde mi Generador de Horario\n`;
+    ics += "END:VEVENT\n";
+  });
+
+  ics+="END:VCALENDAR";
+  return ics;
+}
+
+function formatearICSDateTime(d){
+  let yyyy = d.getFullYear();
+  let mm   = String(d.getMonth()+1).padStart(2,'0');
+  let dd   = String(d.getDate()).padStart(2,'0');
+  let hh   = String(d.getHours()).padStart(2,'0');
+  let min  = String(d.getMinutes()).padStart(2,'0');
+  let ss   = "00";
+  return `${yyyy}${mm}${dd}T${hh}${min}${ss}`;
+}
+
+function descargarICS(icsContent){
+  let blob = new Blob([icsContent], {type: "text/calendar"});
+  let url = URL.createObjectURL(blob);
+
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = "mi_horario.ics";
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
