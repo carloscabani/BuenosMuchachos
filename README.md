@@ -4,5 +4,5 @@ Este proyecto se ha desarrollado con la finalidad de ayudar a estudiantes de pri
 
 ## ¿Cómo ingresar?
 
-En la parte derecha de este página, en la sección Deployments, seleccionar github-pages. 
+Clic aquí: https://carloscabani.github.io/BuenosMuchachos/ 
 
